@@ -13,11 +13,13 @@
 {{- with .Params.image -}}
     <meta property='og:image' content='{{ . | absURL }}'>
 {{- else -}}
+{{ if .Site.Params.opengraph.gravatar }}
 {{- with .Site.Params.Social.email -}}
     <meta property='og:image' content='https://www.gravatar.com/avatar/
         {{- . | md5 -}}
         ?s=256'>
 {{- end -}}
+{{ end }}
 
 {{- with .Params.audios -}}
   {{- range first 6 . -}}
